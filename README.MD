@@ -5,8 +5,10 @@
 **Aqui está a sequencia dos comandos e anotações importantes para a criação do projeto, do início ao fim**.
 
 
-##Configurando o ambiente:
+### Configurando o ambiente:
+
 _Manter todos os campos em branco:_
+
 ```
 yarn init
 ```
@@ -29,7 +31,7 @@ yarn add webpack-dev-server -D
 ---
 
 
-####Na raíz do projeto :
+#### Na raíz do projeto :
 - Criar os diretórios public/ e src/
 - Criar os arquivos:
     - .gitignore com o diretório node_modules/
@@ -81,7 +83,7 @@ yarn add webpack-dev-server -D
 
 ```
 ---
-#####No terminal
+##### No terminal
 
 ```
 yarn dev
