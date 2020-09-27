@@ -1,4 +1,6 @@
-//document.querySelector('body').style.background= '#7E625D';
+import api from './api';
+
+
 class App{
     constructor(){
         // lista de repositorios
@@ -18,15 +20,31 @@ class App{
         this.formulario.onsubmit = evento => this.adicionarRepositorio(evento)
     }
     
-    adicionarRepositorio(evento){
+    async adicionarRepositorio(evento){
         // Evita que o formulário recarregue a pagina
         evento.preventDefault();
+
+        // Recuperar o valor do input
+        let input = this.formulario.querySelector('input[id=repositorio]').value;
+
+        // Se o input vier vazio, sai da aplicação
+        if(input.lenght === 0){
+            return; // return sempre sai da funcao, funciona como go to fim.
+        }
+
+        let response = await api.get(`/repos/${input}`);
+        
+        //console.log(response);
+
+        // Destructuring
+        let {name, description, html_url, owner: {avatar_url}} = response.data
+
         // Adiciona o repositorio na lista
         this.repositorios.push({
-            nome: 'Nerd Fonts',
-            descricao: 'Iconic font aggregator, collection and patcher',
-            avatar_url: 'https://avatars0.githubusercontent.com/u/8083459?v=4',
-            link: 'https://github.com/ryanoasis/nerd-fonts'
+            nome: name,
+            descricao: description,
+            avatar_url,
+            link: html_url
         });
 
         // Renderizar a tela

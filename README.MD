@@ -88,3 +88,12 @@ yarn add webpack-dev-server -D
 ```
 yarn dev
 ```
+
+### Fazer as modificações no main.js
+
+Instalar o axios
+```
+yarn add axios
+```
+
+- No diretório scr criar o arquivo api.js e configurar os dados da api que serão necessários para busca.
