@@ -2,17 +2,17 @@
 
 ![Javascript](javascript.png)
 
-######Aqui está a sequencia dos comandos e anotações importantes para a criação do projeto, do início ao fim.
+**Aqui está a sequencia dos comandos e anotações importantes para a criação do projeto, do início ao fim**.
 
 
 ##Configurando o ambiente:
-Manter todos os campos em branco:
+_Manter todos os campos em branco:_
 ```
 yarn init
 ```
 
 
-Instalar os pacotes:
+_Instalar os pacotes:_
 ```
 yarn add @babel/cli -D
 yarn add @babel/core -D
@@ -65,20 +65,16 @@ yarn add webpack-dev-server -D
         };
         ```
 
-
-
-
-
-
 - No diretorio public criar o subdiretório CSS e o arquivo index.html
 - No diretorio CSS incluir o arquivo de estilos
 
--No diretório src criar o arquivo main.js com alguma configuração pra teste
+- No diretório src criar o arquivo main.js com alguma configuração pra teste
 
 
--No arquivo package.json adicionar os scripts de desenvolvimento e produção
+- No arquivo package.json adicionar os scripts de desenvolvimento e produção
+
 ```js
-      "scripts": {
+"scripts": {
     "dev": "webpack-dev-server --mode=development",
     "prod": "webpack --mode=production"
   }
