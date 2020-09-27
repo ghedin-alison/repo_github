@@ -1,0 +1,1 @@
+document.querySelector('body').style.background= '#7E625D';
