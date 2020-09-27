@@ -32,24 +32,56 @@ class App{
             return; // return sempre sai da funcao, funciona como go to fim.
         }
 
-        let response = await api.get(`/repos/${input}`);
-        
-        //console.log(response);
+        // Ativar a busca
+        this.apresentarBuscando();
 
-        // Destructuring
-        let {name, description, html_url, owner: {avatar_url}} = response.data
+        try{
+            let response = await api.get(`/repos/${input}`);
+            
+            //console.log(response);
 
-        // Adiciona o repositorio na lista
-        this.repositorios.push({
-            nome: name,
-            descricao: description,
-            avatar_url,
-            link: html_url
-        });
+            // Destructuring
+            let {name, description, html_url, owner: {avatar_url}} = response.data
 
-        // Renderizar a tela
-        this.renderizarTela();
+            // Adiciona o repositorio na lista
+            this.repositorios.push({
+                nome: name,
+                descricao: description,
+                avatar_url,
+                link: html_url
+            });
+
+            // Renderizar a tela
+            this.renderizarTela();
+        }catch(erro){
+            // Remover mensagem de busca
+            this.lista.removeChild(document.querySelector('.list-group-item-warning'));
+
+            //Limpar mensagem de erro já existente
+            let err = this.lista.querySelector('.list-group-item-danger');
+
+            if(err !== null){
+                this.lista.removeChild(err);
+            }
+
+            // criar uma <li> informativa
+            let li = document.createElement('li');
+            li.setAttribute('class', 'list-group-item list-group-item-danger');
+            let txtErro = document.createTextNode(`Repositório ${input} não encontrado.`);
+            li.appendChild(txtErro);
+            this.lista.appendChild(li);
+        }
     }
+    apresentarBuscando(){
+
+        let li = document.createElement('li');
+        li.setAttribute('class', 'list-group-item list-group-item-warning');
+        let txtBusca = document.createTextNode(`Aguarde, buscando o repositório...`);
+        li.appendChild(txtBusca);
+        this.lista.appendChild(li);
+    }
+
+
     renderizarTela(){
         // Limpar Conteudo de lista
         this.lista.innerHTML = '';
